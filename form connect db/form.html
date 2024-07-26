@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="sty.css">
+</head>
+<body>
+    <h1>Student Registetion Form</h1>
+    <fieldset style="width: 360px; " >
+    <form action="">
+         <span>Username</span>
+         <input type="text" id="username" placeholder="Enter the Username" style="margin-left: 50px;" class="a">
+         <br><br>
+
+         <span>Email</span>
+         <input type="email" id="email" placeholder="Enter the Email " style="margin-left: 75px;" class="a">
+         <br><br>
+
+         <span>Password</span>
+         <input type="password" id="password" placeholder="Enter the Password" style="margin-left: 50px;"class="a">
+         <br><br>
+
+         <span>Phone Number</span>
+         <input type="number" id="phone" placeholder="Enter the phone Number" style="margin-left: 10px;" class="a">
+         <br><br>
+
+         <input type="submit" value="SUBMIT" id="submit" class="b">
+    </form>
+</fieldset>
+    
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+  import { getDatabase,set,ref,get, child } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAq3d3643szLmMo_zedjcy4zIQMCy8o6ak",
+    authDomain: "first-projact-f0479.firebaseapp.com",
+    databaseURL: "https://first-projact-f0479-default-rtdb.firebaseio.com",
+    projectId: "first-projact-f0479",
+    storageBucket: "first-projact-f0479.appspot.com",
+    messagingSenderId: "461890321546",
+    appId: "1:461890321546:web:724745b6bf961d624e0173"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db=getDatabase(app)
+  const username =document.getElementById("username")
+  const email=document.getElementById("email")
+  
+  document.getElementById('submit').addEventListener('click',function(e){
+    e.preventDefault();
+    
+
+
+    set(ref(db,'/user'+document.getElementById('username').value),{
+      username:  document.getElementById('username').value,
+      email:document.getElementById('email').value,
+      phone:document.getElementById('phone').value,
+      password:document.getElementById('password').value
+
+    })
+    if(username.value!="" && email.value!="" && password.value!="" && phone.value!="")
+    {
+    alert("Submited sucessfully")
+ }
+ })
+    </script>
+    
+</body>
+</html>
